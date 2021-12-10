@@ -13,23 +13,36 @@ shows the current ranks and the changes since yesterday. Saves the ranks from ea
 Since IBM Functions and Cloudant have a free tier, it shouldn't cost you anything to host your advent of code leaderboard,
 at least I hope so otherwise my Christmas wishlist might be taking a hit.
 
-I don't expected to exceed the free tier (as of Dec. 9 2021) from browsing their site
+I don't expect to exceed the free tier (as of Dec. 9 2021) from browsing their site
 
 * 400,000 GB-s for my functions
-*  20 reads/sec
+* 20 reads/sec
 * 10 writes/sec
 * 5 global queries/sec 
 * 1 GB storage
 
 because this only consumes:
 
-1. 1 function per day (didn't benchmarket memory or time)
+1. 1 function per day (didn't benchmark memory or time)
 2. 1 cloudant read per day to obtain the previous day's leaderboard
 3. 1 cloudant write per day to save the current day's leaderboard for the next day to use
-4. Each 25 member leaderboard saved from AOC takes 9KB
+4. Each 25 member leaderboard saved as is from AOC consumes 9KB
 
 # Setup
-Step 1: Cloudant
+Step 1: Slack
+
+1. Go to the workflow build. Easiest way is to type `/workflow` in chat and autocomplete popup will give a `Open Workflow Builder` option
+2. Create
+3. Give it a name
+4. Webhook `ADVANCED`
+5. Add Variable `dayNum` with Data type text
+6. Add Variable `leaderboard` with Data type text
+7. Add step
+8. Send a message
+9. Use the variables in the text editor to design the message however you want. Make sure to put the leaderboard variable inside \`\`\` otherwise it won't render correctly
+10. Select a #channel to send to
+
+Step 2: Cloudant
 
 1. Create a cloudant database free tier
 2. Go to that database and add a record for the current day (suppose today is day 5)
@@ -40,7 +53,8 @@ Step 1: Cloudant
 }
 ```
 
-Step 2
+
+Step 3: IBM Cloud Function
 ```
 npm install --save @ibm-cloud/cloudant
 
