@@ -45,7 +45,8 @@ Step 1: Slack
 Step 2: Cloudant
 
 1. Create a cloudant database free tier
-2. Go to that database and add a record for the current day (suppose today is day 5)
+2. Add a database instance on that cloudant database (I named mine advent_of_code)
+3. Go to that database and add a record for the current day (suppose today is day 5)
 ```
 {
   "_id": "2021-12-05,
@@ -72,5 +73,14 @@ ibmcloud fn action update advent_of_code_update advent_of_code_update.zip --kind
 # "Add Trigger"
 # Perioidic - Trigger an action based on time.
 # every day 4:50am (which is 1150EST)
+# Payload that the trigger sends to cloud function:
+{
+    "apiKey": "<your ibm cloud api key>",
+    "dbName": "<your cloudant db instance name>",
+    "dbUrl": "<your cloudant db url>",
+    "privateLeaderboardUrl": "<your aoc private leaderboard url>",
+    "privateLeaderboardCookie": "<your logged in aoc cookie. you can get it from developer tools in your browser>",
+    "slackWebhookUrl": "<slack workflow builder webhook url that accepts { "dayNum": "", "leaderboard":""}>",
+}
 # make sure to delete the trigger when the contest is over
 ```
