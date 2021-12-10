@@ -13,7 +13,7 @@ shows the current ranks and the changes since yesterday. Saves the ranks from ea
 Since IBM Functions and Cloudant have a free tier, it shouldn't cost you anything to host your advent of code leaderboard,
 at least I hope so otherwise my Christmas wishlist might be taking a hit.
 
-I don't expected to exceed the free tier (as of Dec. 9 2021)
+I don't expected to exceed the free tier (as of Dec. 9 2021) from browsing their site
 
 * 400,000 GB-s for my functions
 *  20 reads/sec
