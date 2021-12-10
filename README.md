@@ -1,5 +1,5 @@
 # AdventOfCodeIBMCloudSlackBot
-Uses IBM Cloud's Free Functions+Periodic Trigger+Cloudant to send messages before the next day begins at 11:50 PM EST. Also since it runs once a day, it meets AoC's request to not exceed 1 request per 15 minutes.
+Uses IBM Cloud's Free [Functions](https://cloud.ibm.com/functions/learn/pricing)+Periodic Trigger+[Cloudant](https://www.ibm.com/cloud/cloudant/pricing) to send messages before the next day begins at 11:50 PM EST. Also since it runs once a day, it meets AoC's request to not exceed 1 request per 15 minutes.
 
 Sends a message that looks like:
 ```
@@ -12,6 +12,21 @@ shows the current ranks and the changes since yesterday. Saves the ranks from ea
 
 Since IBM Functions and Cloudant have a free tier, it shouldn't cost you anything to host your advent of code leaderboard,
 at least I hope so otherwise my Christmas wishlist might be taking a hit.
+
+I don't expected to exceed the free tier (as of Dec. 9 2021)
+
+* 400,000 GB-s for my functions
+*  20 reads/sec
+* 10 writes/sec
+* 5 global queries/sec 
+* 1 GB storage
+
+because this only consumes:
+
+1. 1 function per day (didn't benchmarket memory or time)
+2. 1 cloudant read per day to obtain the previous day's leaderboard
+3. 1 cloudant write per day to save the current day's leaderboard for the next day to use
+4. Each 25 member leaderboard saved from AOC takes 9KB
 
 # Setup
 Step 1: Cloudant
