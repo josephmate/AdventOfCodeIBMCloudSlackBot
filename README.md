@@ -29,7 +29,7 @@ because this only consumes:
 4. Each 25 member leaderboard saved as is from AOC consumes 9KB
 
 # Setup
-Step 1: Slack
+## Step 1: Slack
 
 1. Go to the workflow build. Easiest way is to type `/workflow` in chat and autocomplete popup will give a `Open Workflow Builder` option
 2. Create
@@ -42,7 +42,7 @@ Step 1: Slack
 9. Use the variables in the text editor to design the message however you want. Make sure to put the leaderboard variable inside \`\`\` otherwise it won't render correctly
 10. Select a #channel to send to
 
-Step 2: Cloudant
+## Step 2: Cloudant
 
 1. Create a cloudant database free tier
 2. Add a database instance on that cloudant database (I named mine advent_of_code)
@@ -54,8 +54,31 @@ Step 2: Cloudant
 }
 ```
 
+## Step 3: Cron on ubuntu
 
-Step 3: IBM Cloud Function
+```
+cd AdventOfCodeIbmCloudSlackBot
+sudo add-apt-repository universe
+sudo apt install nodejs
+sudo apt install cron
+npm install
+
+cp testComplete.js run.js
+# fill in all the fields
+vim run.js
+
+crontab -e
+
+# change 23 depending on your server's time zone
+# you can check your server's timezone using `date`
+# date
+# Fri Dec 1 11:23:15 AM EST 2023
+# below is the cron pattern assuming EST
+55 23 * * * <path_to_dir>/run.js
+```
+
+
+## (DEPRECATED) Step 3: IBM Cloud Function
 ```
 npm install --save @ibm-cloud/cloudant
 

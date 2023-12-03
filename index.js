@@ -97,7 +97,9 @@ const makeLeaderboard = function(oldLeaderboard, newLeaderboard) {
 
         result = result + " ";
         result = result + member.memberName;
-        byLocalScore.push(result);
+        if (member.currentDayStars > 0) {
+          byLocalScore.push(result);
+        }
     });
 
     // sort according to the previous day stars
@@ -159,7 +161,9 @@ const makeLeaderboard = function(oldLeaderboard, newLeaderboard) {
         result = result + " ";
         result = result + member.memberName;
         result = result + (prefix(longestMemberName-member.memberName.length));
-        byStars.push(result);
+        if (member.currentDayStars > 0) {
+          byStars.push(result);
+        }
     });
 
     let result = "";
